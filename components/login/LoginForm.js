@@ -23,18 +23,14 @@ class LoginForm extends Component {
   }
 
   onEmailEntered (email) {
-    console.log(email)
     this.setState({email})
   }
 
   onPasswordEntered (password) {
-    console.log(password)
     this.setState({password})
   }
 
   onLoginSuccess () {
-    console.log("success")
-
     this.setState({
       email: '',
       password: '',
@@ -44,7 +40,6 @@ class LoginForm extends Component {
   }
 
   onLoginError () {
-    console.log("error")
     this.setState({
       loading: false,
       error: 'Λάθος στοιχεία'
@@ -56,7 +51,6 @@ class LoginForm extends Component {
       error: '',
       loading: true
     })
-    console.log('handle')
     firebase.auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(this.onLoginSuccess)
