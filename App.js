@@ -6,9 +6,12 @@
 
 import React, { Component } from 'react'
 import { initializeFirebase } from './libs/initialize'
-import LoginForm from './components/login/LoginForm'
+import LoginScreen from './components/login/LoginScreen'
+import HomeScreen from './components/home/HomeScreen'
+import AuthLoadingScreen from './components/splash/AuthLoadingScreen'
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
 
-export default class App extends Component<Props> {
+export default class App extends Component {
 
   componentWillMount () {
     initializeFirebase()
@@ -16,7 +19,20 @@ export default class App extends Component<Props> {
 
   render () {
     return (
-      <LoginForm/>
+      <AppLaunchStack/>
     )
   }
 }
+
+const AppStack = createStackNavigator({Home: HomeScreen})
+const AuthStack = createStackNavigator({Login: LoginScreen})
+
+const AppLaunchStack = createSwitchNavigator({
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  }
+)

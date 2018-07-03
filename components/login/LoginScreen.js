@@ -3,10 +3,14 @@ import { StyleSheet } from 'react-native'
 import { Container, Content, Button, Text, Spinner } from 'native-base'
 import firebase from 'firebase'
 import Welcome from './Welcome'
-import Toolbar from '../common/Toolbar'
 import LoginFields from './LoginFields'
+import FullscreenSpinner from '../commons/FullscreenSpinner'
 
-class LoginForm extends Component {
+class LoginScreen extends Component {
+
+  static navigationOptions = {
+    title: 'Login or Register!',
+  }
 
   constructor (props) {
     super(props)
@@ -37,6 +41,7 @@ class LoginForm extends Component {
       error: '',
       loading: false
     })
+    this.props.navigation.navigate('App')
   }
 
   onLoginError () {
@@ -64,7 +69,7 @@ class LoginForm extends Component {
 
   showLoading () {
     if (this.state.loading) {
-      return <Spinner/>
+      return <FullscreenSpinner/>
     }
 
     return (
@@ -89,7 +94,6 @@ class LoginForm extends Component {
   render () {
     return (
       <Container>
-        <Toolbar title='Login'/>
         {this.showLoading()}
       </Container>
     )
@@ -109,4 +113,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default LoginForm
+export default LoginScreen
