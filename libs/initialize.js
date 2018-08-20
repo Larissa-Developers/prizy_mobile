@@ -1,4 +1,4 @@
-import firebaseConfig from '../config/firebase'
+import firebaseConfig from '../config/Firebase'
 import { initializeApp } from 'firebase'
 
 const initializeFirebase = () => {

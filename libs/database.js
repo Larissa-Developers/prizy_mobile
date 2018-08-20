@@ -1,34 +1,21 @@
 import { database } from 'firebase'
+import firebase from 'firebase'
 
-export function insert (ref, data, onSuccess, errorCb) {
-  database().ref(ref).push(data)
-    .then(onSuccess)
-    .catch(errorCb)
+export function getEvent (eventId) {
+  return firebase.database().ref('events/' + eventId)
 }
 
-export function getAll (ref) {
-  return database().ref(ref).once('value')
+export function getCheckedInUsersForEvent (eventId) {
+  return firebase.database().ref('users').orderByChild('meetupId').equalTo(eventId)
 }
 
-export function get (ref) {
-  return database().ref(ref).once('value')
+export function getEvents () {
+  return firebase.database().ref('events')
 }
 
-export function update (ref, data, onComplete) {
-  let updates = {}
-  updates[ref] = data
-  return database().ref().update(updates, onComplete)
-}
-
-export function remove (ref, onSuccess, onError) {
-  let updates = {}
-  updates[ref] = null
-
-  return database().ref().update(updates)
-    .then(onSuccess)
-    .catch(onError)
-}
-
-export function getLastInserted (ref) {
-  return database().ref(ref).orderByKey().limitToLast(1).once('value')
+export function checkUserIn (email, meetupId) {
+  return firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+    email: email,
+    meetupId: meetupId
+  })
 }

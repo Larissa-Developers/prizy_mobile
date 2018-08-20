@@ -9,7 +9,11 @@ import { initializeFirebase } from './libs/initialize'
 import LoginScreen from './components/login/LoginScreen'
 import HomeScreen from './components/home/HomeScreen'
 import AuthLoadingScreen from './components/splash/AuthLoadingScreen'
+import AddEventScreen from './components/event/AddEventScreen'
+import WinnerScreen from './components/winner/WinnerScreen'
+
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
+import { Root } from 'native-base'
 
 export default class App extends Component {
 
@@ -19,12 +23,19 @@ export default class App extends Component {
 
   render () {
     return (
-      <AppLaunchStack/>
+      <Root>
+        <AppLaunchStack/>
+      </Root>
     )
   }
 }
 
-const AppStack = createStackNavigator({Home: HomeScreen})
+const AppStack = createStackNavigator({
+    Home: HomeScreen,
+    AddEvent: AddEventScreen,
+    Winner: WinnerScreen
+  }
+)
 const AuthStack = createStackNavigator({Login: LoginScreen})
 
 const AppLaunchStack = createSwitchNavigator({

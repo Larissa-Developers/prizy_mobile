@@ -44,10 +44,10 @@ class LoginScreen extends Component {
     this.props.navigation.navigate('App')
   }
 
-  onLoginError () {
+  onLoginError (error) {
     this.setState({
       loading: false,
-      error: 'Λάθος στοιχεία'
+      error: error
     })
   }
 
@@ -63,7 +63,10 @@ class LoginScreen extends Component {
         firebase.auth()
           .createUserWithEmailAndPassword(this.state.email, this.state.password)
           .then(this.onLoginSuccess)
-          .catch(this.onLoginError)
+          .catch((error) => {
+            console.log(error.message)
+            this.onLoginError(error.message)
+          })
       })
   }
 
@@ -87,7 +90,6 @@ class LoginScreen extends Component {
           <Text>Login or sign up!</Text>
         </Button>
       </Content>
-
     )
   }
 
