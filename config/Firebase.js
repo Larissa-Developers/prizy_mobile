@@ -4,5 +4,5 @@ export default {
   databaseURL: 'https://prizy-274c4.firebaseio.com',
   projectId: 'prizy-274c4',
   storageBucket: 'prizy-274c4.appspot.com',
-  messagingSenderId: '831508512307'
-}
+  messagingSenderId: '831508512307',
+};

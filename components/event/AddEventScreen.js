@@ -1,61 +1,61 @@
-import React, { Component } from 'react'
-import { Button, View } from 'react-native'
-import firebase from 'firebase'
-import { Container, Content, Form, Header, Textarea } from 'native-base'
-import FullscreenSpinner from '../commons/FullscreenSpinner'
+import React from 'react';
+import { Button } from 'react-native';
+import firebase from 'firebase';
+import { Container, Content, Form, Textarea } from 'native-base';
+import FullscreenSpinner from '../commons/FullscreenSpinner';
 
-class AddEventScreen extends Component {
+class AddEventScreen extends React.Component {
   static navigationOptions = {
-    title: 'Add new meetup'
-  }
+    title: 'Add new meetup',
+  };
 
   state = {
     loading: false,
     eventName: '',
-    date: new Date
-  }
+    date: new Date(),
+  };
 
   save = () => {
-    console.log('saving')
+    console.log('saving');
 
-    this.setState({loading: true})
+    this.setState({ loading: true });
 
-    firebase.database().ref('events/').push({
-      eventName: this.state.eventName,
-    })
-      .catch(function (error) {
-        console.log(error)
+    firebase
+      .database()
+      .ref('events/')
+      .push({
+        eventName: this.state.eventName,
       })
-      .then(this.props.navigation.goBack())
-  }
+      .catch(error => {
+        console.log(error);
+      })
+      .then(this.props.navigation.goBack());
+  };
 
-  showLoading () {
+  showLoading() {
     if (this.state.loading) {
-      return <FullscreenSpinner/>
+      return <FullscreenSpinner />;
     }
 
     return (
       <Content padder>
         <Form>
-              <Textarea
-                rowSpan={5}
-                bordered placeholder="Textarea"
-                onChangeText={(text) => this.setState({eventName: text})}
-                value={this.state.eventName}/>
+          <Textarea
+            rowSpan={5}
+            bordered
+            placeholder="Textarea"
+            onChangeText={text => this.setState({ eventName: text })}
+            value={this.state.eventName}
+          />
         </Form>
-        <Button title="Save" onPress={this.save}/>
+        <Button title="Save" onPress={this.save} />
       </Content>
-    )
+    );
   }
 
-  render () {
-    return (
-      <Container>
-        {this.showLoading()}
-      </Container>
-    )
+  render() {
+    return <Container>{this.showLoading()}</Container>;
   }
-
 }
 
-export default AddEventScreen
+export default AddEventScreen;

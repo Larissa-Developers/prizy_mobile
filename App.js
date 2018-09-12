@@ -4,41 +4,40 @@
  * @flow
  */
 
-import React, { Component } from 'react'
-import { initializeFirebase } from './libs/initialize'
-import LoginScreen from './components/login/LoginScreen'
-import HomeScreen from './components/home/HomeScreen'
-import AuthLoadingScreen from './components/splash/AuthLoadingScreen'
-import AddEventScreen from './components/event/AddEventScreen'
-import WinnerScreen from './components/winner/WinnerScreen'
+import React from 'react';
+import { initializeFirebase } from './libs/initialize';
+import LoginScreen from './components/login/LoginScreen';
+import HomeScreen from './components/home/HomeScreen';
+import AuthLoadingScreen from './components/splash/AuthLoadingScreen';
+import AddEventScreen from './components/event/AddEventScreen';
+import WinnerScreen from './components/winner/WinnerScreen';
 
-import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
-import { Root } from 'native-base'
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
+import { Root } from 'native-base';
 
-export default class App extends Component {
-
-  componentWillMount () {
-    initializeFirebase()
+export default class App extends React.Component {
+  componentWillMount() {
+    initializeFirebase();
   }
 
-  render () {
+  render() {
     return (
       <Root>
-        <AppLaunchStack/>
+        <AppLaunchStack />
       </Root>
-    )
+    );
   }
 }
 
 const AppStack = createStackNavigator({
-    Home: HomeScreen,
-    AddEvent: AddEventScreen,
-    Winner: WinnerScreen
-  }
-)
-const AuthStack = createStackNavigator({Login: LoginScreen})
+  Home: HomeScreen,
+  AddEvent: AddEventScreen,
+  Winner: WinnerScreen,
+});
+const AuthStack = createStackNavigator({ Login: LoginScreen });
 
-const AppLaunchStack = createSwitchNavigator({
+const AppLaunchStack = createSwitchNavigator(
+  {
     AuthLoading: AuthLoadingScreen,
     App: AppStack,
     Auth: AuthStack,
@@ -46,4 +45,4 @@ const AppLaunchStack = createSwitchNavigator({
   {
     initialRouteName: 'AuthLoading',
   }
-)
+);

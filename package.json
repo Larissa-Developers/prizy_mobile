@@ -3,10 +3,32 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "lint": "eslint src",
+    "lint:script": "eslint --ignore-path .eslintignore \"**/*.js\"",
+    "fix:config": "prettier --ignore-path .eslintignore --write \"**/*.json\"",
+    "fix:docs": "prettier --ignore-path .eslintignore --write \"**/*.md\"",
+    "fix:script": "npm run lint:script -- --fix",
+    "fix": "npm run fix:script && npm run fix:config && npm run fix:docs",
+    "precommit": "lint-staged",
+    "prestart": "npm run fix",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "run-ios": "node node_modules/react-native/local-cli/cli.js run-ios",
     "run-android": "node node_modules/react-native/local-cli/cli.js run-android",
     "test": "jest"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "firebase": "^5.2.0",
@@ -16,9 +38,17 @@
     "react-navigation": "^2.5.5"
   },
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
     "babel-jest": "23.6.0",
     "babel-preset-react-native": "^5",
+    "eslint": "^5.5.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-babel": "^5.2.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
+    "lint-staged": "7.2.2",
     "jest": "23.6.0",
+    "prettier": "^1.14.2",
     "react-test-renderer": "16.4.1"
   },
   "jest": {

@@ -1,27 +1,26 @@
-import React, { Component } from 'react'
-import { Content, Spinner } from 'native-base'
-import firebase from 'firebase'
-import FullscreenSpinner from '../commons/FullscreenSpinner'
+import React from 'react';
+import { Content } from 'native-base';
+import firebase from 'firebase';
+import FullscreenSpinner from '../commons/FullscreenSpinner';
 
-class AuthLoadingScreen extends Component {
-
-  componentDidMount () {
-    firebase.auth().onAuthStateChanged((user) => {
+class AuthLoadingScreen extends React.Component {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.props.navigation.navigate('App')
+        this.props.navigation.navigate('App');
       } else {
-        this.props.navigation.navigate('Auth')
+        this.props.navigation.navigate('Auth');
       }
-    })
+    });
   }
 
-  render () {
+  render() {
     return (
       <Content>
-        <FullscreenSpinner/>
+        <FullscreenSpinner />
       </Content>
-    )
+    );
   }
 }
 
-export default AuthLoadingScreen
+export default AuthLoadingScreen;

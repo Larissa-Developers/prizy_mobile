@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
-import { Form, Item, Input, Label } from 'native-base'
+import React from 'react';
+import { Form, Item, Input, Label } from 'native-base';
 
-export default class LoginFields extends Component {
-
+export default class LoginFields extends React.Component {
   state = {
     email: '',
-    password: ''
-  }
+    password: '',
+  };
 
-  render () {
+  render() {
     return (
       <Form>
         <Item fixedLabel>
@@ -16,12 +15,12 @@ export default class LoginFields extends Component {
           <Input
             autoCapitalize="none"
             value={this.state.email}
-            onSubmitEditing={(event) => {
-              this.refs._root.password.focus()
+            onSubmitEditing={event => {
+              this.refs._root.password.focus();
             }}
             onChangeText={email => {
-              this.setState({email})
-              this.props.onEmailEntered(email)
+              this.setState({ email });
+              this.props.onEmailEntered(email);
             }}
             autoCorrect={false}
           />
@@ -34,13 +33,12 @@ export default class LoginFields extends Component {
             autoCorrect={false}
             secureTextEntry={true}
             onChangeText={password => {
-              this.setState({password})
-              this.props.onPasswordEntered(password)
+              this.setState({ password });
+              this.props.onPasswordEntered(password);
             }}
           />
         </Item>
       </Form>
-    )
+    );
   }
 }
-

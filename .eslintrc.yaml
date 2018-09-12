@@ -1,0 +1,65 @@
+parser: "babel-eslint"
+
+plugins:
+  - prettier
+  - react
+
+extends:
+  - eslint:recommended
+  - prettier
+  - prettier/flowtype
+  - prettier/react
+  #- prettier/standard
+
+env:
+  browser: true
+  node: false
+  es6: true
+  mocha: true
+
+parserOptions:
+  ecmaVersion: 8
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+
+rules:
+  curly: 2
+  dot-notation: 2
+  id-length: 2
+  no-console: 0 # console will be removed from production release
+  no-const-assign: 2
+  no-dupe-class-members: 2
+  no-else-return: 2
+  no-inner-declarations: 2
+  no-lonely-if: 2
+  no-magic-numbers: 0
+  no-shadow: 2
+  no-unneeded-ternary: 2
+  no-unused-expressions: [2, { "allowShortCircuit": true }]
+  no-unused-vars: [2, {args: none}]
+  no-useless-return: 2
+  no-var: 2
+  one-var: [2, {initialized: "never", uninitialized: "always"}]
+  prefer-arrow-callback: 2
+  prefer-const: 2
+  prefer-promise-reject-errors: 2
+  prettier/prettier: 2
+  #sort-imports: 2
+  #sort-keys: [2, asc, {caseSensitive: true, natural: true}]
+  sort-vars: 2
+  strict: [2, global]
+  no-class-assign: 0 # class assign is used for higher order components
+  react/jsx-uses-vars: 2
+  react/prefer-es6-class: 1
+  react/sort-comp: [2, {order: [ "static-methods", "lifecycle", "/^on.+$/", "everything-else", "render" ] }]
+  react/prop-types: [2, {skipUndeclared: true}]
+
+globals:
+  __DEV__: true
+  __DISABLED_FEATURE__: true
+  require: true
+  module: true
+  $: true
+  ga: true
+  process: true

@@ -1,0 +1,8 @@
+proseWrap: never
+singleQuote: true
+trailingComma: es5
+
+overrides:
+- files: "*.json"
+  options:
+    printWidth: 200

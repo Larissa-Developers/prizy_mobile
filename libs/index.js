@@ -1,3 +1,3 @@
-export * from '/initalize'
-export * from '/auth'
-export * from '/database'
+export * from '/initalize';
+export * from '/auth';
+export * from '/database';

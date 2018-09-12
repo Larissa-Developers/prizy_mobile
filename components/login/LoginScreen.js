@@ -1,118 +1,111 @@
-import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
-import { Container, Content, Button, Text, Spinner } from 'native-base'
-import firebase from 'firebase'
-import Welcome from './Welcome'
-import LoginFields from './LoginFields'
-import FullscreenSpinner from '../commons/FullscreenSpinner'
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Container, Content, Button, Text } from 'native-base';
+import firebase from 'firebase';
+import Welcome from './Welcome';
+import LoginFields from './LoginFields';
+import FullscreenSpinner from '../commons/FullscreenSpinner';
 
-class LoginScreen extends Component {
-
+class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'Login or Register!',
-  }
+  };
 
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: '',
       error: '',
-      loading: false
-    }
-    this.onEmailEntered = this.onEmailEntered.bind(this)
-    this.onPasswordEntered = this.onPasswordEntered.bind(this)
-    this.onLoginSuccess = this.onLoginSuccess.bind(this)
-    this.onLoginError = this.onLoginError.bind(this)
+      loading: false,
+    };
+    this.onEmailEntered = this.onEmailEntered.bind(this);
+    this.onPasswordEntered = this.onPasswordEntered.bind(this);
+    this.onLoginSuccess = this.onLoginSuccess.bind(this);
+    this.onLoginError = this.onLoginError.bind(this);
   }
 
-  onEmailEntered (email) {
-    this.setState({email})
+  onEmailEntered(email) {
+    this.setState({ email });
   }
 
-  onPasswordEntered (password) {
-    this.setState({password})
+  onPasswordEntered(password) {
+    this.setState({ password });
   }
 
-  onLoginSuccess () {
+  onLoginSuccess() {
     this.setState({
       email: '',
       password: '',
       error: '',
-      loading: false
-    })
-    this.props.navigation.navigate('App')
+      loading: false,
+    });
+    this.props.navigation.navigate('App');
   }
 
-  onLoginError (error) {
+  onLoginError(error) {
     this.setState({
       loading: false,
-      error: error
-    })
+      error: error,
+    });
   }
 
-  handleLogin () {
+  handleLogin() {
     this.setState({
       error: '',
-      loading: true
-    })
-    firebase.auth()
+      loading: true,
+    });
+    firebase
+      .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(this.onLoginSuccess)
       .catch(() => {
-        firebase.auth()
+        firebase
+          .auth()
           .createUserWithEmailAndPassword(this.state.email, this.state.password)
           .then(this.onLoginSuccess)
-          .catch((error) => {
-            console.log(error.message)
-            this.onLoginError(error.message)
-          })
-      })
+          .catch(error => {
+            console.log(error.message);
+            this.onLoginError(error.message);
+          });
+      });
   }
 
-  showLoading () {
+  showLoading() {
     if (this.state.loading) {
-      return <FullscreenSpinner/>
+      return <FullscreenSpinner />;
     }
 
     return (
       <Content>
-        <Welcome/>
+        <Welcome />
         <LoginFields
           onEmailEntered={this.onEmailEntered}
           onPasswordEntered={this.onPasswordEntered}
         />
         <Text style={styles.errorText}> {this.state.error} </Text>
-        <Button
-          style={styles.button}
-          onPress={() => this.handleLogin()}
-        >
+        <Button style={styles.button} onPress={() => this.handleLogin()}>
           <Text>Login or sign up!</Text>
         </Button>
       </Content>
-    )
+    );
   }
 
-  render () {
-    return (
-      <Container>
-        {this.showLoading()}
-      </Container>
-    )
+  render() {
+    return <Container>{this.showLoading()}</Container>;
   }
-
 }
 
 const styles = StyleSheet.create({
   button: {
     marginTop: 30,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   errorText: {
     marginTop: 20,
     fontSize: 20,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
-})
+});
 
-export default LoginScreen
+export default LoginScreen;
