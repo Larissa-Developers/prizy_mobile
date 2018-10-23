@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Content, Button, Text } from 'native-base';
-import firebase from 'firebase';
 import Welcome from './Welcome';
 import LoginFields from './LoginFields';
 import FullscreenSpinner from '../commons/FullscreenSpinner';
@@ -55,20 +54,6 @@ class LoginScreen extends React.Component {
       error: '',
       loading: true,
     });
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(this.onLoginSuccess)
-      .catch(() => {
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.state.email, this.state.password)
-          .then(this.onLoginSuccess)
-          .catch(error => {
-            console.log(error.message);
-            this.onLoginError(error.message);
-          });
-      });
   }
 
   showLoading() {

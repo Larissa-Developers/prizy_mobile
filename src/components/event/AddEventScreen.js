@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-native';
-import firebase from 'firebase';
+
 import { Container, Content, Form, Textarea } from 'native-base';
 import FullscreenSpinner from '../commons/FullscreenSpinner';
 
@@ -17,19 +17,7 @@ class AddEventScreen extends React.Component {
 
   save = () => {
     console.log('saving');
-
     this.setState({ loading: true });
-
-    firebase
-      .database()
-      .ref('events/')
-      .push({
-        eventName: this.state.eventName,
-      })
-      .catch(error => {
-        console.log(error);
-      })
-      .then(this.props.navigation.goBack());
   };
 
   showLoading() {

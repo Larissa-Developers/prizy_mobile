@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import { initializeFirebase } from './libs/initialize';
 import LoginScreen from './components/login/LoginScreen';
 import HomeScreen from './components/home/HomeScreen';
 import AuthLoadingScreen from './components/splash/AuthLoadingScreen';
@@ -16,10 +15,6 @@ import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import { Root } from 'native-base';
 
 export default class App extends React.Component {
-  componentWillMount() {
-    initializeFirebase();
-  }
-
   render() {
     return (
       <Root>
