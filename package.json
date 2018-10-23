@@ -31,7 +31,6 @@
     ]
   },
   "dependencies": {
-    "firebase": "^5.2.0",
     "native-base": "^2.8.0",
     "react": "16.4.1",
     "react-native": "0.56.1",
