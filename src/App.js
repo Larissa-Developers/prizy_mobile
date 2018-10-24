@@ -14,12 +14,22 @@ import WinnerScreen from './components/winner/WinnerScreen';
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import { Root } from 'native-base';
 
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import configureStore from './store';
+
+const { persistor, store } = configureStore();
+
 export default class App extends React.Component {
   render() {
     return (
-      <Root>
-        <AppLaunchStack />
-      </Root>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Root>
+            <AppLaunchStack />
+          </Root>
+        </PersistGate>
+      </Provider>
     );
   }
 }
