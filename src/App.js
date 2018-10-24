@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import { initializeFirebase } from './libs/initialize';
 import LoginScreen from './components/login/LoginScreen';
 import HomeScreen from './components/home/HomeScreen';
 import AuthLoadingScreen from './components/splash/AuthLoadingScreen';
@@ -22,10 +21,6 @@ import configureStore from './store';
 const { persistor, store } = configureStore();
 
 export default class App extends React.Component {
-  componentWillMount() {
-    initializeFirebase();
-  }
-
   render() {
     return (
       <Provider store={store}>

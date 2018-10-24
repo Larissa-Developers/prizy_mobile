@@ -1,5 +1,4 @@
 import React from 'react';
-import firebase from 'firebase';
 import {
   Container,
   Content,
@@ -10,7 +9,6 @@ import {
   Toast,
   Text,
 } from 'native-base';
-import { checkUserIn, getCheckedInUsersForEvent } from '../../libs/database';
 import { getUrl } from '../../config/Meetup';
 import FullscreenSpinner from '../commons/FullscreenSpinner';
 
@@ -18,7 +16,7 @@ const BUTTONS = ['Check In', 'Prize', 'Cancel'];
 const CHECK_IN_INDEX = 0;
 const PRIZE_INDEX = 1;
 const CANCEL_INDEX = 2;
-let selectedEvent = '';
+//let selectedEvent = '';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -50,47 +48,18 @@ class HomeScreen extends React.Component {
       .catch(error => this.showToast(error.message));
   }
 
-  componentWillUnmount() {
-    firebase
-      .database()
-      .ref()
-      .off('value');
-  }
-
   onOptionSelected(index) {
     if (index === CANCEL_INDEX) {
       return;
     }
 
     if (index === CHECK_IN_INDEX) {
-      checkUserIn(firebase.auth().currentUser.email, selectedEvent)
-        .then(this.showToast('Checked in successfully, good luck!'))
-        .catch(error => this.showToast(error.message));
+      //TODO: check in user
       return;
     }
 
     if (index === PRIZE_INDEX) {
-      if (firebase.auth().currentUser.email !== 'renegens@gmail.com') {
-        return;
-      }
-
-      getCheckedInUsersForEvent(selectedEvent).on(
-        'child_added',
-        childSnapshot => {
-          const users = [];
-          users.push({
-            member: childSnapshot.val().email,
-          });
-
-          const firstWinner = users[Math.floor(Math.random() * users.length)];
-
-          console.log('First Winner ' + firstWinner);
-
-          this.props.navigation.navigate('Winner', {
-            winners: [firstWinner, firstWinner],
-          });
-        }
-      );
+      //TODO: handle
     }
   }
 
@@ -110,10 +79,7 @@ class HomeScreen extends React.Component {
   }
 
   signOut = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(this.props.navigation.navigate('Auth'));
+    //TODO: handle sign out
   };
 
   render() {
@@ -138,7 +104,7 @@ class HomeScreen extends React.Component {
                         title: 'Options',
                       },
                       buttonIndex => {
-                        selectedEvent = item.id;
+                        //selectedEvent = item.id;
                         this.onOptionSelected(buttonIndex);
                       }
                     )
