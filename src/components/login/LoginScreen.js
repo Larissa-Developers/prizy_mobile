@@ -18,21 +18,17 @@ class LoginScreen extends React.Component {
       error: '',
       loading: false,
     };
-    this.onEmailEntered = this.onEmailEntered.bind(this);
-    this.onPasswordEntered = this.onPasswordEntered.bind(this);
-    this.onLoginSuccess = this.onLoginSuccess.bind(this);
-    this.onLoginError = this.onLoginError.bind(this);
   }
 
-  onEmailEntered(email) {
+  onEmailEntered = email => {
     this.setState({ email });
-  }
+  };
 
-  onPasswordEntered(password) {
+  onPasswordEntered = password => {
     this.setState({ password });
-  }
+  };
 
-  onLoginSuccess() {
+  onLoginSuccess = () => {
     this.setState({
       email: '',
       password: '',
@@ -40,23 +36,20 @@ class LoginScreen extends React.Component {
       loading: false,
     });
     this.props.navigation.navigate('App');
-  }
+  };
 
-  onLoginError(error) {
+  onLoginError = error => {
     this.setState({
       loading: false,
       error: error,
     });
-  }
+  };
 
-  handleLogin() {
-    this.setState({
-      error: '',
-      loading: true,
-    });
-  }
+  handleLogin = () => {
+    //TODO: Fix login process
+  };
 
-  showLoading() {
+  showLoading = () => {
     if (this.state.loading) {
       return <FullscreenSpinner />;
     }
@@ -74,7 +67,7 @@ class LoginScreen extends React.Component {
         </Button>
       </Content>
     );
-  }
+  };
 
   render() {
     return <Container>{this.showLoading()}</Container>;
