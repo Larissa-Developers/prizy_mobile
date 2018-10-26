@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Container, Content, Button, Text } from 'native-base';
 import Welcome from './Welcome';
 import LoginFields from './LoginFields';
-import FullscreenSpinner from '../commons/FullscreenSpinner';
+import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
 
 class LoginScreen extends React.Component {
   static navigationOptions = {

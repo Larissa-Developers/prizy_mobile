@@ -5,11 +5,11 @@
  */
 
 import React from 'react';
-import LoginScreen from './components/login/LoginScreen';
-import HomeScreen from './components/home/HomeScreen';
-import AuthLoadingScreen from './components/splash/AuthLoadingScreen';
-import AddEventScreen from './components/event/AddEventScreen';
-import WinnerScreen from './components/winner/WinnerScreen';
+import LoginScreen from './screens/login/LoginScreen';
+import HomeScreen from './screens/home/HomeScreen';
+import AuthLoadingScreen from './screens/splash/AuthLoadingScreen';
+import AddEventScreen from './screens/event/AddEventScreen';
+import WinnerScreen from './screens/winner/WinnerScreen';
 
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import { Root } from 'native-base';
