@@ -5,14 +5,8 @@
  */
 
 import React from 'react';
-import LoginScreen from './screens/login/LoginScreen';
-import HomeScreen from './screens/home/HomeScreen';
-import AuthLoadingScreen from './screens/splash/AuthLoadingScreen';
-import AddEventScreen from './screens/event/AddEventScreen';
-import WinnerScreen from './screens/winner/WinnerScreen';
-
-import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import { Root } from 'native-base';
+import { AppLaunchStack } from './navigators';
 
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -33,21 +27,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const AppStack = createStackNavigator({
-  Home: HomeScreen,
-  AddEvent: AddEventScreen,
-  Winner: WinnerScreen,
-});
-const AuthStack = createStackNavigator({ Login: LoginScreen });
-
-const AppLaunchStack = createSwitchNavigator(
-  {
-    AuthLoading: AuthLoadingScreen,
-    App: AppStack,
-    Auth: AuthStack,
-  },
-  {
-    initialRouteName: 'AuthLoading',
-  }
-);
