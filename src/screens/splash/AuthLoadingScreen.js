@@ -1,6 +1,6 @@
 import React from 'react';
 import { Content } from 'native-base';
-import FullscreenSpinner from '../commons/FullscreenSpinner';
+import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
 
 class AuthLoadingScreen extends React.Component {
   componentDidMount() {

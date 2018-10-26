@@ -10,7 +10,7 @@ import {
   Text,
 } from 'native-base';
 import { getUrl } from '../../config/Meetup';
-import FullscreenSpinner from '../commons/FullscreenSpinner';
+import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
 
 const BUTTONS = ['Check In', 'Prize', 'Cancel'];
 const CHECK_IN_INDEX = 0;

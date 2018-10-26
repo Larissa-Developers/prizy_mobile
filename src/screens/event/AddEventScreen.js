@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'react-native';
 
 import { Container, Content, Form, Textarea } from 'native-base';
-import FullscreenSpinner from '../commons/FullscreenSpinner';
+import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
 
 class AddEventScreen extends React.Component {
   static navigationOptions = {
