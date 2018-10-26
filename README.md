@@ -1,10 +1,12 @@
 # Prizy
 
-This a WIP for the Larisa Developers Meetup Group.
+Prizy is a mobile app, built in React-Native, that will help automate the prize draws during our meetup. Attendees will have the ability to check in and enter the draw.
 
-In a nutshell, the app will give the ability, to the meetup's attendees, to check themselfs in and be part of the the meetup's draw for prizes.
+More features will be added in the future.
 
 ## Requirements
+
+Be sure to check the official [React Native Guide](https://facebook.github.io/react-native/docs/getting-started.html).
 
 1. [NodeJS](https://nodejs.org/en/) (version 8.3 or newer)
 2. [Watchman](https://facebook.github.io/watchman/) - if you are on macOS. Watchman is a tool by Facebook for watching changes in the filesystem. It is highly recommended you install it for better performance.
@@ -29,11 +31,11 @@ Run `npm install` from root directory
 
 ## Backend
 
-Please, follow the community's [backend project](https://github.com/Larissa-Developers/prizy_backend).
+The app will consume data from a RESTful API. For more details, please, check the community's [backend project](https://github.com/Larissa-Developers/prizy_backend).
 
 ## Project management
 
-Currently, there is [trello board](https://trello.com/b/b1KCAdqE/prizy-mobile) available, with a backlog of user stories. In addition to that board, GitHub issues will be used to track bugs, feature requests and more.
+Currently, there is a [trello board](https://trello.com/b/b1KCAdqE/prizy-mobile) available, with a backlog of user stories. In addition to that board, GitHub issues will be used to track bugs, feature requests and more.
 
 ## Contribution
 
@@ -44,7 +46,6 @@ In a nutshell, you can follow these steps:
 1. **Fork** the repo on GitHub
 2. **Clone** the project to your own machine
 3. **Commit** changes to your own branch
-4. **Push** your work back up to your fork
-5. Submit a **Pull request** so that we can review your changes
-
-**NOTE:** Be sure to merge the latest changes from "upstream" before making a pull request! See how you can [sync your fork](https://help.github.com/articles/syncing-a-fork/).
+4. **Sync** your fork (see [how](https://help.github.com/articles/syncing-a-fork/))
+5. **Push** your work back up to your fork
+6. Submit a **Pull request** so that we can review your changes
