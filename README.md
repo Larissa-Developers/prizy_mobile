@@ -11,8 +11,8 @@ Be sure to check the official [React Native Guide](https://facebook.github.io/re
 1. [NodeJS](https://nodejs.org/en/) (version 8.3 or newer)
 2. [Watchman](https://facebook.github.io/watchman/) - if you are on macOS. Watchman is a tool by Facebook for watching changes in the filesystem. It is highly recommended you install it for better performance.
 3. React Native cli - [react-native-cli](https://www.npmjs.com/package/react-native-cli)
-4. Xcode (to the app run on iOS)
-5. Android Studio (to the app run on Android)
+4. Xcode (to run the app on iOS)
+5. Android Studio (to run the app on Android)
 
 ## Getting started
 
