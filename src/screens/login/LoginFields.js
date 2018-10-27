@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Item, Input, Label } from 'native-base';
+import { View, Text, TextInput } from 'react-native';
 
 export default class LoginFields extends React.Component {
   state = {
@@ -9,10 +9,10 @@ export default class LoginFields extends React.Component {
 
   render() {
     return (
-      <Form>
-        <Item fixedLabel>
-          <Label>Email</Label>
-          <Input
+      <View>
+        <View>
+          <Text>Email :</Text>
+          <TextInput
             autoCapitalize="none"
             value={this.state.email}
             onSubmitEditing={event => {
@@ -24,10 +24,10 @@ export default class LoginFields extends React.Component {
             }}
             autoCorrect={false}
           />
-        </Item>
-        <Item fixedLabel last>
-          <Label>Password</Label>
-          <Input
+        </View>
+        <View>
+          <Text>Password :</Text>
+          <TextInput
             autoCapitalize="none"
             value={this.state.password}
             autoCorrect={false}
@@ -37,8 +37,8 @@ export default class LoginFields extends React.Component {
               this.props.onPasswordEntered(password);
             }}
           />
-        </Item>
-      </Form>
+        </View>
+      </View>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Content } from 'native-base';
+import { View } from 'react-native';
 import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
 
 class AuthLoadingScreen extends React.Component {
@@ -18,9 +18,9 @@ class AuthLoadingScreen extends React.Component {
 
   render() {
     return (
-      <Content>
+      <View style={{ flex: 1 }}>
         <FullscreenSpinner />
-      </Content>
+      </View>
     );
   }
 }

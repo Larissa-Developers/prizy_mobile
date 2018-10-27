@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Text } from 'native-base';
+import { View, Text } from 'react-native';
 
 class WinnerScreen extends React.Component {
   static navigationOptions = {
@@ -11,10 +11,10 @@ class WinnerScreen extends React.Component {
     const winners = navigation.getParam('winners', []);
 
     return (
-      <Container>
+      <View style={{ flex: 1 }}>
         <Text>Winner one: {winners[0].member}</Text>
         <Text>Winner two: {winners[1].member}</Text>
-      </Container>
+      </View>
     );
   }
 }
