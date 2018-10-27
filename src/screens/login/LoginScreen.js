@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Content, Button, Text } from 'native-base';
 import Welcome from './Welcome';
 import LoginFields from './LoginFields';
 import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
+import LoginStyle from './LoginScreenStyle';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -55,35 +55,26 @@ class LoginScreen extends React.Component {
     }
 
     return (
-      <Content>
+      <View style={{ backgroundColor: 'white' }}>
         <Welcome />
         <LoginFields
           onEmailEntered={this.onEmailEntered}
           onPasswordEntered={this.onPasswordEntered}
         />
-        <Text style={styles.errorText}> {this.state.error} </Text>
-        <Button style={styles.button} onPress={() => this.handleLogin()}>
+        <Text style={LoginStyle.errorText}> {this.state.error} </Text>
+        <TouchableOpacity
+          style={LoginStyle.button}
+          onPress={() => this.handleLogin()}
+        >
           <Text>Login or sign up!</Text>
-        </Button>
-      </Content>
+        </TouchableOpacity>
+      </View>
     );
   };
 
   render() {
-    return <Container>{this.showLoading()}</Container>;
+    return <View>{this.showLoading()}</View>;
   }
 }
-
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 30,
-    alignSelf: 'center',
-  },
-  errorText: {
-    marginTop: 20,
-    fontSize: 20,
-    alignSelf: 'center',
-  },
-});
 
 export default LoginScreen;

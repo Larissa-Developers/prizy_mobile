@@ -5,9 +5,8 @@
  */
 
 import React from 'react';
-import { Root } from 'native-base';
 import { AppLaunchStack } from './navigators';
-
+import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import configureStore from './store';
@@ -19,9 +18,9 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Root>
+          <View style={{ flex: 1, backgroundColor: 'white' }}>
             <AppLaunchStack />
-          </Root>
+          </View>
         </PersistGate>
       </Provider>
     );
