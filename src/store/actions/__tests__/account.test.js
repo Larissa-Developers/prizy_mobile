@@ -7,7 +7,18 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('Account actions', () => {
-  it('should create an action for logging the user out', () => {
+  it('should create an action for logging the user IN', () => {
+    const expectedAction = {
+      type: ActionTypes.ACCOUNT_LOGIN,
+      user: {
+        name: 'test name',
+      },
+    };
+
+    expect(actions.login({ name: 'test name' })).toEqual(expectedAction);
+  });
+
+  it('should create an action for logging the user OUT', () => {
     const expectedAction = {
       type: ActionTypes.ACCOUNT_LOGOUT,
     };
