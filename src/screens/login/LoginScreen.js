@@ -55,7 +55,7 @@ class LoginScreen extends React.Component {
     }
 
     return (
-      <View style={{ backgroundColor: 'white' }}>
+      <View style={LoginStyle.container}>
         <Welcome />
         <LoginFields
           onEmailEntered={this.onEmailEntered}
@@ -66,7 +66,7 @@ class LoginScreen extends React.Component {
           style={LoginStyle.button}
           onPress={() => this.handleLogin()}
         >
-          <Text>Login or sign up!</Text>
+          <Text style={LoginStyle.btn}>Login or sign up!</Text>
         </TouchableOpacity>
       </View>
     );

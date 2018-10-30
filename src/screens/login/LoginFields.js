@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
+import LoginFieldsStyle from './LoginFieldsStyle';
 
 export default class LoginFields extends React.Component {
   state = {
@@ -10,9 +11,10 @@ export default class LoginFields extends React.Component {
   render() {
     return (
       <View>
-        <View>
-          <Text>Email :</Text>
+        <View style={LoginFieldsStyle.fieldContainer}>
+          <Text style={LoginFieldsStyle.text}>Email :</Text>
           <TextInput
+            style={LoginFieldsStyle.loginInput}
             autoCapitalize="none"
             value={this.state.email}
             onSubmitEditing={event => {
@@ -25,9 +27,10 @@ export default class LoginFields extends React.Component {
             autoCorrect={false}
           />
         </View>
-        <View>
-          <Text>Password :</Text>
+        <View style={LoginFieldsStyle.fieldContainer}>
+          <Text style={LoginFieldsStyle.text}>Password :</Text>
           <TextInput
+            style={LoginFieldsStyle.loginInput}
             autoCapitalize="none"
             value={this.state.password}
             autoCorrect={false}
