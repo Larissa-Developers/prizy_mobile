@@ -14,7 +14,7 @@ class LoginScreen extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: '',
+      name: '',
       error: '',
       loading: false,
     };
@@ -24,14 +24,14 @@ class LoginScreen extends React.Component {
     this.setState({ email });
   };
 
-  onPasswordEntered = password => {
-    this.setState({ password });
+  onNameEntered = name => {
+    this.setState({ name });
   };
 
   onLoginSuccess = () => {
     this.setState({
       email: '',
-      password: '',
+      name: '',
       error: '',
       loading: false,
     });
@@ -55,25 +55,26 @@ class LoginScreen extends React.Component {
     }
 
     return (
-      <View style={{ backgroundColor: 'white' }}>
+      <View>
         <Welcome />
         <LoginFields
+          style={LoginStyle.form}
           onEmailEntered={this.onEmailEntered}
-          onPasswordEntered={this.onPasswordEntered}
+          onNameEntered={this.onNameEntered}
         />
         <Text style={LoginStyle.errorText}> {this.state.error} </Text>
         <TouchableOpacity
           style={LoginStyle.button}
           onPress={() => this.handleLogin()}
         >
-          <Text>Login or sign up!</Text>
+          <Text style={LoginStyle.btn}>Login or sign up!</Text>
         </TouchableOpacity>
       </View>
     );
   };
 
   render() {
-    return <View>{this.showLoading()}</View>;
+    return <View style={LoginStyle.container}>{this.showLoading()}</View>;
   }
 }
 
