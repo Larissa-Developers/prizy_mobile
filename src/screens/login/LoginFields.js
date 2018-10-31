@@ -5,20 +5,20 @@ import LoginFieldsStyle from './LoginFieldsStyle';
 export default class LoginFields extends React.Component {
   state = {
     email: '',
-    password: '',
+    name: '',
   };
 
   render() {
     return (
-      <View>
+      <View style={this.props.style}>
         <View style={LoginFieldsStyle.fieldContainer}>
-          <Text style={LoginFieldsStyle.text}>Email :</Text>
+          <Text style={[LoginFieldsStyle.text]}>Email :</Text>
           <TextInput
             style={LoginFieldsStyle.loginInput}
             autoCapitalize="none"
             value={this.state.email}
             onSubmitEditing={event => {
-              this.refs._root.password.focus();
+              this.nameField.focus();
             }}
             onChangeText={email => {
               this.setState({ email });
@@ -28,16 +28,19 @@ export default class LoginFields extends React.Component {
           />
         </View>
         <View style={LoginFieldsStyle.fieldContainer}>
-          <Text style={LoginFieldsStyle.text}>Password :</Text>
+          <Text style={LoginFieldsStyle.text}>Name :</Text>
           <TextInput
+            ref={input => {
+              this.nameField = input;
+            }}
             style={LoginFieldsStyle.loginInput}
             autoCapitalize="none"
-            value={this.state.password}
+            value={this.state.name}
             autoCorrect={false}
-            secureTextEntry={true}
-            onChangeText={password => {
-              this.setState({ password });
-              this.props.onPasswordEntered(password);
+            secureTextEntry={false}
+            onChangeText={name => {
+              this.setState({ name });
+              this.props.onNameEntered(name);
             }}
           />
         </View>

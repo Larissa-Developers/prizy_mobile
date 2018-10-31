@@ -14,7 +14,7 @@ class LoginScreen extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: '',
+      name: '',
       error: '',
       loading: false,
     };
@@ -24,14 +24,14 @@ class LoginScreen extends React.Component {
     this.setState({ email });
   };
 
-  onPasswordEntered = password => {
-    this.setState({ password });
+  onNameEntered = name => {
+    this.setState({ name });
   };
 
   onLoginSuccess = () => {
     this.setState({
       email: '',
-      password: '',
+      name: '',
       error: '',
       loading: false,
     });
@@ -58,8 +58,9 @@ class LoginScreen extends React.Component {
       <View>
         <Welcome />
         <LoginFields
+          style={LoginStyle.form}
           onEmailEntered={this.onEmailEntered}
-          onPasswordEntered={this.onPasswordEntered}
+          onNameEntered={this.onNameEntered}
         />
         <Text style={LoginStyle.errorText}> {this.state.error} </Text>
         <TouchableOpacity

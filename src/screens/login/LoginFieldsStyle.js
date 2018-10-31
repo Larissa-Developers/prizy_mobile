@@ -8,6 +8,7 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 18,
+    width: 90,
   },
   loginInput: {
     flex: 1,

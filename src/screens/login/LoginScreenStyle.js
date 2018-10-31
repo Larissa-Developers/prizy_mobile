@@ -25,4 +25,7 @@ export default StyleSheet.create({
     padding: 5,
     justifyContent: 'center',
   },
+  form: {
+    marginTop: 30,
+  },
 });
