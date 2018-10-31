@@ -55,7 +55,7 @@ class LoginScreen extends React.Component {
     }
 
     return (
-      <View style={LoginStyle.container}>
+      <View>
         <Welcome />
         <LoginFields
           onEmailEntered={this.onEmailEntered}
@@ -73,7 +73,7 @@ class LoginScreen extends React.Component {
   };
 
   render() {
-    return <View>{this.showLoading()}</View>;
+    return <View style={LoginStyle.container}>{this.showLoading()}</View>;
   }
 }
 
