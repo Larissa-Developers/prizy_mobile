@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { connect } from 'react-redux';
 import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
 
 class AuthLoadingScreen extends React.Component {
@@ -12,8 +13,8 @@ class AuthLoadingScreen extends React.Component {
   }
 
   isAuthenticated = () => {
-    //TODO: Fix authentication process
-    return false;
+    const { user } = this.props.account;
+    return user != null && user.id != null;
   };
 
   render() {
@@ -25,4 +26,8 @@ class AuthLoadingScreen extends React.Component {
   }
 }
 
-export default AuthLoadingScreen;
+const mapStateToProps = state => ({
+  account: state.account,
+});
+
+export default connect(mapStateToProps)(AuthLoadingScreen);

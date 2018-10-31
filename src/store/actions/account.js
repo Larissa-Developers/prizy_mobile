@@ -1,5 +1,18 @@
 import * as ActionTypes from '../actiontypes';
 
+/**
+ * Creates a redux-action to store user's information locally.
+ *
+ * @param {*} user The user's data
+ * @returns
+ */
+export const login = user => {
+  return {
+    type: ActionTypes.ACCOUNT_LOGIN,
+    user,
+  };
+};
+
 export const logout = () => {
   return {
     type: ActionTypes.ACCOUNT_LOGOUT,

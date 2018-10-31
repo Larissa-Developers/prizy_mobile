@@ -1,4 +1,5 @@
 import reducer, { initalState } from '../account';
+import * as actions from '../../actions/account';
 import * as ActionTypes from '../../actiontypes';
 
 describe('[Reducer] Account', () => {
@@ -6,14 +7,32 @@ describe('[Reducer] Account', () => {
     expect(reducer(undefined, {})).toEqual(initalState);
   });
 
+  it('should handle ACCOUNT_LOGIN', () => {
+    const mockedUser = {
+      first_name: 'babis',
+      last_name: 'sougias',
+    };
+    const mockedAction = actions.login(mockedUser);
+
+    expect(reducer(undefined, mockedAction)).toEqual({
+      user: mockedUser,
+    });
+  });
+
   it('should handle ACCOUNT_LOGOUT', () => {
     const mockedAction = {
       type: ActionTypes.ACCOUNT_LOGOUT,
     };
     const mockedState = {
-      some_key: 'some_value',
+      user: {
+        first_name: 'some',
+        last_name: 'random person',
+      },
     };
 
-    expect(reducer(mockedState, mockedAction)).toEqual(initalState);
+    expect(reducer(mockedState, mockedAction)).toEqual({
+      ...mockedState,
+      user: {},
+    });
   });
 });
