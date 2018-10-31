@@ -1,4 +1,24 @@
 import * as ActionTypes from '../actiontypes';
+import * as AccountAPI from '../../api/account';
+
+/**
+ * Registers user to the backend service.
+ *
+ * @param {string} email User's email
+ * @param {string} name User's name
+ */
+export const register = (email, name) => {
+  return dispatch => {
+    return AccountAPI.register(email, name)
+      .then(user => {
+        dispatch(login(user));
+        return user;
+      })
+      .catch(err => {
+        return Promise.reject(err);
+      });
+  };
+};
 
 /**
  * Creates a redux-action to store user's information locally.
