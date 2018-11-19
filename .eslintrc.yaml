@@ -15,6 +15,7 @@ env:
   browser: true
   node: false
   es6: true
+  commonjs: true
   mocha: true
   jest: true
 
