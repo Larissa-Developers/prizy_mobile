@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Container,
   Content,
@@ -9,7 +10,7 @@ import {
   Toast,
   Text,
 } from 'native-base';
-import { getUrl } from '../../config/Meetup';
+import { fetchEvents } from '../../store/actions/events-actions';
 import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
 
 const BUTTONS = ['Check In', 'Prize', 'Cancel'];
@@ -26,26 +27,9 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      events: [],
-      loading: true,
-    };
-
     this.onOptionSelected = this.onOptionSelected.bind(this);
     this.showToast = this.showToast.bind(this);
     this.updateEvents = this.updateEvents.bind(this);
-  }
-
-  componentDidMount() {
-    fetch(getUrl())
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState({
-          events: responseJson,
-          loading: false,
-        });
-      })
-      .catch(error => this.showToast(error.message));
   }
 
   onOptionSelected(index) {
@@ -83,16 +67,16 @@ class HomeScreen extends React.Component {
   };
 
   render() {
-    const { loading } = this.state;
+    const { list, listing } = this.props.events;
 
     return (
       <Container>
-        {loading && <FullscreenSpinner />}
+        {listing && <FullscreenSpinner />}
 
-        {!loading && (
+        {!listing && (
           <Content>
             <List
-              dataArray={this.state.events}
+              dataArray={list}
               renderRow={item => (
                 <ListItem
                   button
@@ -125,4 +109,15 @@ class HomeScreen extends React.Component {
   }
 }
 
-export default HomeScreen;
+const mapStateToProps = state => ({
+  events: state.events,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchEvents: () => dispatch(fetchEvents()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeScreen);
