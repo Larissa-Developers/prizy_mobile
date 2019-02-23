@@ -1,24 +1,10 @@
 import React from 'react';
 import { ActivityIndicator, RefreshControl, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
-import {
-  Content,
-  ActionSheet,
-  Button,
-  List,
-  ListItem,
-  Toast,
-  Text,
-} from 'native-base';
+import { Content, Button, List, ListItem, Toast, Text } from 'native-base';
 import { fetchEvents } from '../../store/actions/events-actions';
 import EmptySpaceContainer from '../../components/emptySpaceContainer/EmptySpaceContainer';
 import RetryView from '../../components/commons/RetryView';
-
-const BUTTONS = ['Check In', 'Prize', 'Cancel'];
-const CHECK_IN_INDEX = 0;
-const PRIZE_INDEX = 1;
-const CANCEL_INDEX = 2;
-//let selectedEvent = '';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -28,7 +14,6 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onOptionSelected = this.onOptionSelected.bind(this);
     this.showToast = this.showToast.bind(this);
     this.updateEvents = this.updateEvents.bind(this);
     this.renderEmptySpace = this.renderEmptySpace.bind(this);
@@ -36,21 +21,6 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.props.fetchEvents();
-  }
-
-  onOptionSelected(index) {
-    if (index === CANCEL_INDEX) {
-      return;
-    }
-
-    if (index === CHECK_IN_INDEX) {
-      //TODO: check in user
-      return;
-    }
-
-    if (index === PRIZE_INDEX) {
-      //TODO: handle
-    }
   }
 
   showToast(message) {
@@ -100,22 +70,7 @@ class HomeScreen extends React.Component {
             <List
               dataArray={list}
               renderRow={item => (
-                <ListItem
-                  button
-                  onPress={() =>
-                    ActionSheet.show(
-                      {
-                        options: BUTTONS,
-                        cancelButtonIndex: CANCEL_INDEX,
-                        title: 'Options',
-                      },
-                      buttonIndex => {
-                        //selectedEvent = item.id;
-                        this.onOptionSelected(buttonIndex);
-                      }
-                    )
-                  }
-                >
+                <ListItem button onPress={() => {}}>
                   <Text>{item.name}</Text>
                 </ListItem>
               )}
