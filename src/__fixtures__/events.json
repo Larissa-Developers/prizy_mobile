@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "event_meetup_id": "258922802",
+    "event_venue": {
+      "venue_meetup_id": "24797524",
+      "country": "gr",
+      "city": "Larissa",
+      "address": "Ifaistou & Eleftheriou Venizelou",
+      "name": "Linto Project",
+      "lon": 0.0,
+      "lat": 0.0,
+      "repinned": false
+    },
+    "reservation_limit": 100,
+    "headcount": 0,
+    "visibility": "public",
+    "waitlistcount": 18,
+    "event_fee": {
+      "amount": 0,
+      "currency": "EUR",
+      "label": "price",
+      "required": false
+    },
+    "description": "<p>Django / Rails / Laravel<br/>==========================================</p> <p>Decisions, decisions! Why is choosing so hard?</p> <p>Πολλές φορές όταν ξεκινάμε ένα νέο project, ακόμα και οι πιο έμπειροι από εμάς, έχουμε βρεθεί ανάμεσα σε δίλημμα για το ποιο framework να επιλέξουμε. Οι διαθέσιμες επιλογές είναι αρκετές, αλλά εμάς μας αρέσει να βοηθάμε. Έτσι, αποφασίσαμε να παρουσιάσουμε 3 δημοφιλή web frameworks!</p> <p>Στο πρώτο meetup του 2019, έχουμε την χαρά να φιλοξενούμε την Στέλλα Ρούζη και τον Γιώργο Βασιλάκο. Η Στέλλα θα μας δείξει πώς μπορούμε μέσα σε λίγα λεπτά να δημιουργήσουμε μια web εφαρμογή με πλήρη λειτουργικότητα σε Ruby on Rails και ο Γιώργος θα μας βοηθήσει να πάρουμε την δύσκολη απόφαση, αναλύοντας τις βασικότερες λειτουργίες των Django, Laravel &amp; Ruby On Rails.</p> <p>---</p> <p>When we begin to work on a new project, no matter our level of expertise, we often find it hard to choose the right web framework. There are many good options, but fear not our mighty devs because Larissa Developers Meetup is here to help!</p> <p>In our first meetup for 2019, we have the pleasure to welcome Stella Rouzi and George Vasilakos. Stella will demonstrate how to implement a fully functional web app using Ruby on Rails and George will help us make the difficult decision by analyzing core functionalities of the ever so popular Django, Laravel &amp; Ruby on Rails.</p> <p>Speakers (in order of appearance)<br/>-----------------------------------------------<br/>Stella Rouzi - Ruby on Rails Developer<br/>George Vasilakos - Senior Backend Developer</p> <p>Schedule<br/>--------------<br/>7: 00pm - 7: 15pm : Introductions<br/>7: 15pm - 8: 00pm : Create a Rails application in under 5 minutes (Stella Rouzi)<br/>8: 00pm - 8: 15pm : Break<br/>8.15pm - 9: 00pm : Web Frameworks: how different are they? (George Vasilakos)<br/>9: 00pm - : Connecting micro-party!</p> ",
+    "event_url": "https: //www.meetup.com/Larissa-Developers-Meetup/events/258922802/",
+    "yes_reservation_count": 98,
+    "duration": 120,
+    "name": "14th Meetup: Django / Rails / Laravel",
+    "photo": "event_pics/default.png",
+    "time": 1550854800000,
+    "updated": 1550045952000,
+    "status": "upcoming"
+  },
+  {
+    "id": 2,
+    "event_meetup_id": "256537405",
+    "event_venue": {
+      "venue_meetup_id": "24797524",
+      "country": "gr",
+      "city": "Larissa",
+      "address": "Ifaistou & Eleftheriou Venizelou",
+      "name": "Linto Project",
+      "lon": 0.0,
+      "lat": 0.0,
+      "repinned": false
+    },
+    "reservation_limit": 100,
+    "headcount": 0,
+    "visibility": "public",
+    "waitlistcount": 0,
+    "event_fee": {
+      "amount": 0,
+      "currency": "EUR",
+      "label": "price",
+      "required": false
+    },
+    "description": "<p>Machine Learning &amp; Computer Vision<br/>==========================================</p> <p>Μια ακόμη δημιουργική χρονιά φτάνει στο τέλος της και η κοινότητα μας αποχαιρετά το 2018 με Machine Learning και Computer Vision. Στο τελευταίο meetup της χρονιάς, έχουμε την χαρά να φιλοξενούμε τον Σεραφείμ και την Αγγελική, οι οποίοι θα μας μυήσουν στον κόσμο της Μηχανικής Μάθησης και θα μας μιλήσουν για άκρως ενδιαφέροντα θέματα όπως οι βασικές αρχές, πως συμβάλλει η Μηχανική Μάθηση σε κοινωνικά θέματα όπως η πρόβλεψη ασθενειών και η κλιματική αλλαγή, καθώς και η παρακολούθηση της αλληλεπίδρασης ενός ανθρώπινου χεριού με αντικείμενα δυναμικού σχήματος χρησιμοποιώντας μια κάμερα βάθους.</p> <p>Another year comes to an end and our amazing developers community says goodbye to 2018 with Machine Learning and Computer Vision. In our last meetup for this year, we have the pleasure to welcome Serafeim and Aggeliki, who will introduce us to the world of ML and will talk about exciting topics such as basic principles, the application of ML in social issues like disease prediction and climate change, and tracking a deformable object in interaction with a hand, using a depth camera.</p> <p>Speakers (in order of appearance)<br/>-----------------------------------------------<br/>Serafeim Moustakidis - Researcher<br/>Aggeliki Tsoli - Postdoctoral Researcher</p> <p>Schedule<br/>--------------<br/>7: 00pm - 7: 10pm : Introductions<br/>7: 10pm - 7: 55pm : Machine Learning: Hype versus Reality (Serafeim Moustakidis)<br/>7: 55pm - 8: 15pm : Break<br/>8.15pm - 9: 00pm : Observing humans with Computer Vision (Aggeliki Tsoli)<br/>9: 00pm - : Connecting x-mas micro-party (ho ho ho!)</p> ",
+    "event_url": "https: //www.meetup.com/Larissa-Developers-Meetup/events/256537405/",
+    "yes_reservation_count": 100,
+    "duration": 120,
+    "name": "13th Meetup: Machine Learning & Computer Vision",
+    "photo": "event_pics/default.png",
+    "time": 1545325200000,
+    "updated": 1542620699000,
+    "status": "past"
+  },
+  {
+    "id": 3,
+    "event_meetup_id": "255618294",
+    "event_venue": {
+      "venue_meetup_id": "24797524",
+      "country": "gr",
+      "city": "Larissa",
+      "address": "Ifaistou & Eleftheriou Venizelou",
+      "name": "Linto Project",
+      "lon": 0.0,
+      "lat": 0.0,
+      "repinned": false
+    },
+    "reservation_limit": 100,
+    "headcount": 0,
+    "visibility": "public",
+    "waitlistcount": 0,
+    "event_fee": {
+      "amount": 0,
+      "currency": "EUR",
+      "label": "price",
+      "required": false
+    },
+    "description": "<p>TEI of Thessaly Edition<br/>==========================================</p> <p>Νέα σεζόν ξεκινά και για το 12ο Meetup έχουμε ετοιμάσει μια ειδική θεματολογία: τα software projects του ΤΕΙ Θεσσαλίας! Το τμήμα Μηχανικών Πληροφορικής μετράει πολλές διακρίσεις και βραβεύσεις φοιτητών και καθηγητών καθώς και συμμετοχές σε ενδιαφέροντα ερευνητικά προγράμματα. Σε αυτή τη συνάντηση θα παρουσιάσουμε ένα μικρό δείγμα από τα δεκάδες software projects του τμήματος και θα δούμε πως, από την αναζήτηση καυσίμων μέχρι την ομαδοποίηση δεδομένων μεγάλου όγκου, καμία ιδέα δεν είναι μικρή για να εξελιχθεί σε ένα υποσχόμενο project!</p> <p>Another season begins for our little community and we are welcoming you to our 12th Meetup with a special theme: software projects of TEI of Thessaly!Students and professors of the dept. of Computer Science and Engineering have won many distinctions and awards and they have been involved in interesting research projects. In our Μeetup we will present a small sample of the dozens of software projects born in TEI and we will witness that, from fuel search to fast clustering techniques on big data, no idea is small enough to be a promising project!</p> <p>Speakers (in order of appearance)<br/>-----------------------------------------------<br/>Dimitris Ntemos - Software Engineer<br/>Fotis Kokkoras - Lecturer at TEI of Thessaly<br/>Ilias Savvas - Professor at TEI of Thessaly<br/>Dimitris Gravanis - Back-end Developer</p> <p>Schedule<br/>--------------<br/>7: 00pm - 7: 10pm : Introductions<br/>7: 10pm - 7: 40pm : FuelGR (Ntemos Dimitris - Fotis Kokkoras)<br/>7: 40pm - 7: 50pm : Break<br/>7.50pm - 8: 20pm : Applications of fast clustering techniques on big data (Ilias Savvas)<br/>8: 20pm - 8: 30pm : Break<br/>8: 30pm - 9: 00pm : Univtag (Dimitris Gravanis)<br/>9: 00pm - : Connecting micro-party</p> ",
+    "event_url": "https: //www.meetup.com/Larissa-Developers-Meetup/events/255618294/",
+    "yes_reservation_count": 100,
+    "duration": 120,
+    "name": "12th Meetup: TEI of Thessaly Edition",
+    "photo": "event_pics/default.png",
+    "time": 1541091600000,
+    "updated": 1541107483000,
+    "status": "past"
+  }
+]

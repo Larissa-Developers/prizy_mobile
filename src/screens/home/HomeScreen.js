@@ -1,22 +1,15 @@
 import React from 'react';
 import {
-  Container,
-  Content,
-  ActionSheet,
-  Button,
-  List,
-  ListItem,
-  Toast,
-  Text,
-} from 'native-base';
-import { getUrl } from '../../config/Meetup';
-import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
-
-const BUTTONS = ['Check In', 'Prize', 'Cancel'];
-const CHECK_IN_INDEX = 0;
-const PRIZE_INDEX = 1;
-const CANCEL_INDEX = 2;
-//let selectedEvent = '';
+  ActivityIndicator,
+  Alert,
+  RefreshControl,
+  SafeAreaView,
+} from 'react-native';
+import { connect } from 'react-redux';
+import { Content, Button, List, ListItem, Toast, Text } from 'native-base';
+import { fetchEvents } from '../../store/actions/events-actions';
+import EmptySpaceContainer from '../../components/emptySpaceContainer/EmptySpaceContainer';
+import RetryView from '../../components/commons/RetryView';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -26,41 +19,45 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      events: [],
-      loading: true,
-    };
+    this.state = {};
 
-    this.onOptionSelected = this.onOptionSelected.bind(this);
     this.showToast = this.showToast.bind(this);
     this.updateEvents = this.updateEvents.bind(this);
+    this.renderEmptySpace = this.renderEmptySpace.bind(this);
+    this.loadData = this.loadData.bind(this);
   }
 
   componentDidMount() {
-    fetch(getUrl())
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState({
-          events: responseJson,
-          loading: false,
-        });
-      })
-      .catch(error => this.showToast(error.message));
+    this.loadData();
   }
 
-  onOptionSelected(index) {
-    if (index === CANCEL_INDEX) {
-      return;
-    }
+  /**
+   * Accepts an error and returns a proper message based on the given error.
+   *
+   * @memberof HomeScreen
+   */
+  getErrorMessage = error => {
+    const { description, status } = error || {};
 
-    if (index === CHECK_IN_INDEX) {
-      //TODO: check in user
-      return;
+    let msg = 'No events available';
+    if (status) {
+      msg = `Network error: ${status}`;
     }
+    return description || msg;
+  };
 
-    if (index === PRIZE_INDEX) {
-      //TODO: handle
-    }
+  loadData() {
+    this.props
+      .fetchEvents()
+      .then(res => this.setState({ error: undefined }))
+      .catch(error => {
+        const { events } = this.props;
+        const { list } = events;
+        if (!list.length) {
+          Alert.alert(this.getErrorMessage(error));
+        }
+        this.setState({ error });
+      });
   }
 
   showToast(message) {
@@ -82,47 +79,64 @@ class HomeScreen extends React.Component {
     //TODO: handle sign out
   };
 
-  render() {
-    const { loading } = this.state;
+  renderEmptySpace() {
+    const { events } = this.props;
+    const { listing } = events;
+    if (listing) {
+      return <ActivityIndicator animating={true} />;
+    }
 
+    const { error } = this.state;
     return (
-      <Container>
-        {loading && <FullscreenSpinner />}
+      <RetryView
+        message={this.getErrorMessage(error)}
+        onPress={this.loadData}
+      />
+    );
+  }
 
-        {!loading && (
-          <Content>
+  render() {
+    const { events } = this.props;
+    const { list, listing } = events;
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <EmptySpaceContainer
+          showEmptySpace={!list.length}
+          onRenderEmptySpace={this.renderEmptySpace}
+        >
+          <Content
+            refreshControl={
+              <RefreshControl refreshing={listing} onRefresh={this.loadData} />
+            }
+          >
             <List
-              dataArray={this.state.events}
+              dataArray={list}
               renderRow={item => (
-                <ListItem
-                  button
-                  onPress={() =>
-                    ActionSheet.show(
-                      {
-                        options: BUTTONS,
-                        cancelButtonIndex: CANCEL_INDEX,
-                        title: 'Options',
-                      },
-                      buttonIndex => {
-                        //selectedEvent = item.id;
-                        this.onOptionSelected(buttonIndex);
-                      }
-                    )
-                  }
-                >
+                <ListItem button onPress={() => {}}>
                   <Text>{item.name}</Text>
                 </ListItem>
               )}
             />
           </Content>
-        )}
+        </EmptySpaceContainer>
 
         <Button block danger onPress={this.signOut}>
           <Text>Logout</Text>
         </Button>
-      </Container>
+      </SafeAreaView>
     );
   }
 }
 
-export default HomeScreen;
+const mapStateToProps = state => ({
+  events: state.events,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchEvents: () => dispatch(fetchEvents()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeScreen);
