@@ -53,7 +53,7 @@ class HomeScreen extends React.Component {
       .catch(error => {
         const { events } = this.props;
         const { list } = events;
-        if (!list.length) {
+        if (list.length) {
           Alert.alert(this.getErrorMessage(error));
         }
         this.setState({ error });
