@@ -1,7 +1,7 @@
 import React from 'react';
+import { ActivityIndicator, RefreshControl, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import {
-  Container,
   Content,
   ActionSheet,
   Button,
@@ -11,7 +11,8 @@ import {
   Text,
 } from 'native-base';
 import { fetchEvents } from '../../store/actions/events-actions';
-import FullscreenSpinner from '../../components/commons/FullscreenSpinner';
+import EmptySpaceContainer from '../../components/emptySpaceContainer/EmptySpaceContainer';
+import RetryView from '../../components/commons/RetryView';
 
 const BUTTONS = ['Check In', 'Prize', 'Cancel'];
 const CHECK_IN_INDEX = 0;
@@ -30,6 +31,11 @@ class HomeScreen extends React.Component {
     this.onOptionSelected = this.onOptionSelected.bind(this);
     this.showToast = this.showToast.bind(this);
     this.updateEvents = this.updateEvents.bind(this);
+    this.renderEmptySpace = this.renderEmptySpace.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchEvents();
   }
 
   onOptionSelected(index) {
@@ -66,15 +72,31 @@ class HomeScreen extends React.Component {
     //TODO: handle sign out
   };
 
-  render() {
-    const { list, listing } = this.props.events;
-
+  renderEmptySpace() {
+    const { events, fetchEvents: onFetchEvents } = this.props;
+    const { listing } = events;
+    if (listing) {
+      return <ActivityIndicator animating={true} />;
+    }
     return (
-      <Container>
-        {listing && <FullscreenSpinner />}
+      <RetryView message={'No events available'} onPress={onFetchEvents} />
+    );
+  }
 
-        {!listing && (
-          <Content>
+  render() {
+    const { events, fetchEvents: onFetchEvents } = this.props;
+    const { list, listing } = events;
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <EmptySpaceContainer
+          showEmptySpace={!list.length}
+          onRenderEmptySpace={this.renderEmptySpace}
+        >
+          <Content
+            refreshControl={
+              <RefreshControl refreshing={listing} onRefresh={onFetchEvents} />
+            }
+          >
             <List
               dataArray={list}
               renderRow={item => (
@@ -99,12 +121,12 @@ class HomeScreen extends React.Component {
               )}
             />
           </Content>
-        )}
+        </EmptySpaceContainer>
 
         <Button block danger onPress={this.signOut}>
           <Text>Logout</Text>
         </Button>
-      </Container>
+      </SafeAreaView>
     );
   }
 }
