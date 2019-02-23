@@ -4,6 +4,8 @@ import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Styles from './EmptySpaceContainer.style';
 
+export const DEFAULT_MSG = 'No data available';
+
 /**
  * Container for empty spaces on screens with empty lists etc.
  */
@@ -16,9 +18,8 @@ class EmptySpaceContainer extends React.Component {
   }
 
   renderDefaultMessage() {
-    const defaultMsg = 'No data available';
     const { message } = this.props;
-    return <Text>{message || defaultMsg}</Text>;
+    return <Text>{message || DEFAULT_MSG}</Text>;
   }
 
   renderEmptySpace() {
