@@ -59,6 +59,7 @@
     "redux-mock-store": "^1.5.3"
   },
   "jest": {
+    "verbose": true,
     "preset": "react-native",
     "transform": {
       "^.+\\.js$": "./node_modules/react-native/jest/preprocessor.js"
