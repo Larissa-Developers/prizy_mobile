@@ -1,5 +1,10 @@
 import React from 'react';
-import { ActivityIndicator, RefreshControl, SafeAreaView } from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  RefreshControl,
+  SafeAreaView,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { Content, Button, List, ListItem, Toast, Text } from 'native-base';
 import { fetchEvents } from '../../store/actions/events-actions';
@@ -14,13 +19,45 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {};
+
     this.showToast = this.showToast.bind(this);
     this.updateEvents = this.updateEvents.bind(this);
     this.renderEmptySpace = this.renderEmptySpace.bind(this);
+    this.loadData = this.loadData.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchEvents();
+    this.loadData();
+  }
+
+  /**
+   * Accepts an error and returns a proper message based on the given error.
+   *
+   * @memberof HomeScreen
+   */
+  getErrorMessage = error => {
+    const { description, status } = error || {};
+
+    let msg = 'No events available';
+    if (status) {
+      msg = `Network error: ${status}`;
+    }
+    return description || msg;
+  };
+
+  loadData() {
+    this.props
+      .fetchEvents()
+      .then(res => this.setState({ error: undefined }))
+      .catch(error => {
+        const { events } = this.props;
+        const { list } = events;
+        if (!list.length) {
+          Alert.alert(this.getErrorMessage(error));
+        }
+        this.setState({ error });
+      });
   }
 
   showToast(message) {
@@ -43,18 +80,23 @@ class HomeScreen extends React.Component {
   };
 
   renderEmptySpace() {
-    const { events, fetchEvents: onFetchEvents } = this.props;
+    const { events } = this.props;
     const { listing } = events;
     if (listing) {
       return <ActivityIndicator animating={true} />;
     }
+
+    const { error } = this.state;
     return (
-      <RetryView message={'No events available'} onPress={onFetchEvents} />
+      <RetryView
+        message={this.getErrorMessage(error)}
+        onPress={this.loadData}
+      />
     );
   }
 
   render() {
-    const { events, fetchEvents: onFetchEvents } = this.props;
+    const { events } = this.props;
     const { list, listing } = events;
     return (
       <SafeAreaView style={{ flex: 1 }}>
@@ -64,7 +106,7 @@ class HomeScreen extends React.Component {
         >
           <Content
             refreshControl={
-              <RefreshControl refreshing={listing} onRefresh={onFetchEvents} />
+              <RefreshControl refreshing={listing} onRefresh={this.loadData} />
             }
           >
             <List

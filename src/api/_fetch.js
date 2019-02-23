@@ -41,6 +41,9 @@ const _fetch = (url, opts) => {
               const err = {
                 status: res.status,
                 url: url,
+                description:
+                  json.description ||
+                  'Something went wrong connecting with the service',
               };
               return Promise.reject(err);
             },

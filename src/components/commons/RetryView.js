@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const RetryView = ({ style, message, buttonText, onPress }) => (
   <View style={style}>
-    <Text>{message}</Text>
+    <Text style={{ textAlign: 'center' }}>{message}</Text>
     <Button transparent style={{ alignSelf: 'center' }} onPress={onPress}>
       <Text>{buttonText || 'Retry'}</Text>
     </Button>
