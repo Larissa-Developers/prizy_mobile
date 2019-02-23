@@ -52,6 +52,7 @@ rules:
   sort-vars: 2
   strict: [2, global]
   no-class-assign: 0 # class assign is used for higher order components
+  react/jsx-uses-react: 1
   react/jsx-uses-vars: 2
   react/prefer-es6-class: 1
   react/sort-comp: [2, {order: [ "static-methods", "lifecycle", "/^on.+$/", "everything-else", "render" ] }]
