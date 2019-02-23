@@ -3,5 +3,5 @@ export const isDevelopmentEnvironment = () => {
 };
 
 export default {
-  serverURL: process.env.SERVER_URL || 'http://52.47.130.43',
+  serverURL: process.env.SERVER_URL || 'http://52.47.130.43:8000',
 };

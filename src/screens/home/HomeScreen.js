@@ -2,18 +2,45 @@ import React from 'react';
 import {
   ActivityIndicator,
   Alert,
+  Platform,
   RefreshControl,
   SafeAreaView,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Content, Button, List, ListItem, Toast, Text } from 'native-base';
+import {
+  ActionSheet,
+  Content,
+  Button,
+  Icon,
+  List,
+  ListItem,
+  Toast,
+  Text,
+} from 'native-base';
 import { fetchEvents } from '../../store/actions/events-actions';
 import EmptySpaceContainer from '../../components/emptySpaceContainer/EmptySpaceContainer';
 import RetryView from '../../components/commons/RetryView';
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Home',
+      headerRight: (
+        <Button
+          transparent
+          primary
+          onPress={navigation.getParam('onMoreOptions')}
+        >
+          <Icon
+            type={'MaterialIcons'}
+            name={Platform.select({
+              ios: 'more-horiz',
+              android: 'more-vert',
+            })}
+          />
+        </Button>
+      ),
+    };
   };
 
   constructor(props) {
@@ -28,8 +55,35 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
+    this.props.navigation.setParams({ onMoreOptions: this._onMoreOptions });
     this.loadData();
   }
+
+  _onMoreOptions = () => {
+    ActionSheet.show(
+      {
+        options: ['Cancel', 'Logout', 'Profile', 'About'],
+        cancelButtonIndex: 0,
+        destructiveButtonIndex: 1,
+        title: 'Options',
+      },
+      buttonIndex => {
+        switch (buttonIndex) {
+          case 1:
+            this.signOut();
+            break;
+          case 2:
+            this.props.navigation.navigate('Profile');
+            break;
+          case 3:
+            this.props.navigation.navigate('About');
+            break;
+          default:
+            break;
+        }
+      }
+    );
+  };
 
   /**
    * Accepts an error and returns a proper message based on the given error.
@@ -119,10 +173,6 @@ class HomeScreen extends React.Component {
             />
           </Content>
         </EmptySpaceContainer>
-
-        <Button block danger onPress={this.signOut}>
-          <Text>Logout</Text>
-        </Button>
       </SafeAreaView>
     );
   }
