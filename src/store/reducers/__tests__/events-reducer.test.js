@@ -1,5 +1,6 @@
 import reducer, { initalState } from '../events-reducer';
 import * as actions from '../../actions/events-actions';
+import events from '../../../__fixtures__/events.json';
 
 describe('[Reducer] Events', () => {
   it('should return the initial state', () => {
@@ -7,12 +8,13 @@ describe('[Reducer] Events', () => {
   });
 
   it('should handle ACCOUNT_LOGIN', () => {
-    const mockedList = [{ title: 'the amazing meetup' }];
-    const mockedAction = actions.getEventsListSuccess(mockedList);
+    const mockedAction = actions.getEventsListSuccess(events);
 
-    expect(reducer(undefined, mockedAction)).toEqual({
-      list: mockedList,
+    const res = reducer(undefined, mockedAction);
+    expect(res).toEqual({
+      list: events,
       listing: false,
     });
+    expect(res.list).toHaveLength(events.length);
   });
 });
